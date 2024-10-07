@@ -1,5 +1,5 @@
-// import fs from 'node:fs/promises';
-const fs = requre('fs').promises;
+import fs from 'node:fs/promises';
+// const fs = requre('fs').promises;
 
 const create = async () => {
     // Write your code here
@@ -13,11 +13,13 @@ const create = async () => {
         fs.stat(path).then(() => {
             throw new Error ("FS operation failed");
         }).catch(error => {
-            return false;
+            if (error.code === 'ENOENT')
+                return false;
+            Promise.reject(error);
         })
     }
 
-    const write = async (path) => {
+    const writeFreshFile = async (path) => {
         fs.writeFile(path, 'I am fresh and young').then(() => {
             console.log("File create")
         }).catch(error=>{
@@ -26,8 +28,8 @@ const create = async () => {
     }
 
     try {
-        if (await isFileExist(FILE_PATH) === false) {
-            write(FILE_PATH);
+        if ( !(await isFileExist(FILE_PATH)) ) {
+            await writeFreshFile(FILE_PATH);
         }
     }catch (e) {
         console.log(e.message);
