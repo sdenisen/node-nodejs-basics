@@ -23,7 +23,7 @@ const create = async () => {
         fs.writeFile(path, 'I am fresh and young').then(() => {
             console.log("File create")
         }).catch(error=>{
-            console.error(e.message);
+            console.error(error.message);
         });
     }
 

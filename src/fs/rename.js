@@ -8,7 +8,7 @@ const rename = async () => {
     // Error with message FS operation failed must be thrown)
 
     const old_file_name = "src/fs/files/wrongFilename.txt"
-    const new_file_name = "src/fs/files/wrongFilename.txt"
+    const new_file_name = "src/fs/files/properFilename.txt"
 
     fs.stat(old_file_name).catch(error => {
         throw Error("FS operation failed");

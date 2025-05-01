@@ -13,7 +13,7 @@ const calculateHash = async () => {
                 console.log(hash);
             });
     }).catch(error => {
-        console.log("error during reading the file");
+        console.log("Error during reading the file");
     });
 };
 
